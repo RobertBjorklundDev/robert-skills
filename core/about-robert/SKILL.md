@@ -1,33 +1,31 @@
 ---
 name: about-robert
-description: DRAFT. Use to decide when to ask Robert, when to research, and when to spawn a subagent instead of relying on his knowledge.
+description: Use to decide when to ask Robert, when to research, and when to spawn a subagent instead of relying on his knowledge; also how he likes to work with agents.
 ---
 
-# About Robert (DRAFT)
-> TODO Robert: extend strengths, gaps, and how you want agents to escalate.
+# About Robert
+> DRAFT parts marked TODO for Robert.
 
 ## Strengths
-Robert is a senior full-stack and AI engineer. Use his skills for how software is built:
-- .NET / C#
-- TypeScript / Node
-- LangGraph agents
-- Test-first API design
-- Integration testing with Testcontainers
+- .NET / C#, TypeScript / Node, LangGraph agents
+- Test-first, black-box API testing with real databases (Testcontainers)
+- System design instincts: service boundaries, separate databases per service, failure handling
+- Product thinking: reasons about the real product, not only the prototype
 
-## Ask Robert
-- Outcome and time: prototype, new app, or existing app, and how long we have.
-- Product intent, trade-offs, and what "done" looks like.
-- Conventions that are not written down yet (especially DRAFT skills).
-- Whether a skill gap you hit should become a new or updated skill.
-- Anything that would be sent in his name (see communication).
+## Gaps: research or use a subagent
+- Unfamiliar business domains: banking (e.g. immutable audit logs was missed in a case), medical and clinical rules.
+- Regulation and compliance. Use official sources; not friends or relatives as domain experts.
+- Some database and HTTP internals he will ask about (row locking, connection handling): explain and link docs.
 
-## Research or a subagent; do not rely on Robert
-- Unfamiliar business domains such as banking and regulation.
-- Anything compliance-heavy (licenses, audits, data-residency law, medical, legal).
-- Use `core/domain-research` and `domains/` first. Spawn a research subagent when the domain is outside his listed strengths.
-- Do not treat Robert as the source of truth for regulatory detail.
+## How he works with agents
+- One ticket at a time; he reviews, the agent reviews, he merges.
+- Short files (about 500 lines) and less clutter so review is fast.
+- He asks many "what does this do?" questions; answer plainly, then propose a skill/rule if it exposes a pattern.
+- Turns review findings into rules and skills (Cursor and Claude versions).
+- Sometimes dictates by voice: ask when a message is unclear.
+- TODO Robert: extend strengths, gaps, escalation.
 
 ## How to choose
-1. Is this how we build software (.NET, TypeScript, APIs, tests, agents)? Use Robert's skills.
-2. Is this what the business or regulation requires? Research or a subagent, then confirm remaining product questions with Robert.
-3. If a skill is missing or wrong, note the gap so the skill can be fixed.
+1. How we build software: Robert's skills.
+2. What the business or regulation requires: research first, then confirm product questions with him.
+3. Missing or wrong skill: note the gap.

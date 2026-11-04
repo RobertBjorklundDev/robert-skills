@@ -27,10 +27,14 @@ Sync into a project: `scripts/sync.sh <path> /path/to/project` (copies `core/` p
 | Skill | When to use |
 |---|---|
 | [prototype](paths/prototype/SKILL.md) | Use for time-boxed assignments and interview cases: find the core, build only that. |
+| [intake](paths/prototype/intake/SKILL.md) | Use at the start of a take-home or interview case: find the core ask, ambiguities, and time budget before any code. |
 | [testing](paths/prototype/testing/SKILL.md) | Use when deciding what to test in a prototype; keep only core tests at hand-in. |
 | [architecture](paths/prototype/architecture/SKILL.md) | Use when structuring a prototype; minimal layers, skip ceremony. |
 | [dotnet](paths/prototype/dotnet/SKILL.md) | DRAFT. Use when the prototype is .NET; one project, thin endpoints. |
 | [typescript](paths/prototype/typescript/SKILL.md) | Use when the prototype is TypeScript/Node; skip generated-client and locale ceremony unless that is the core. |
+| [hand-in](paths/prototype/hand-in/SKILL.md) | Use before submitting: cleanup, README with interpretations, required docs, every core rule has a test. |
+| [interview-prep](paths/prototype/interview-prep/SKILL.md) | Use after hand-in, before the follow-up interview: make Robert able to explain and defend the solution. |
+| [ai-work-log](paths/prototype/ai-work-log/SKILL.md) | Use when an assignment asks how AI was used; keep a reasoned log and time tally from minute one. |
 
 ### `paths/new-app/` — startup / greenfield when there is time
 

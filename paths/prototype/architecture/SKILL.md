@@ -1,19 +1,18 @@
 ---
 name: prototype-architecture
-description: Use when structuring a time-boxed prototype. Minimal layers; skip ceremony.
+description: Use when structuring a time-boxed prototype. Minimal layers, clear boundaries, simple choices; skip ceremony.
 ---
 
 # Prototype architecture
 
-Lighter than `paths/new-app/architecture`. **This path OVERRIDES the full architecture skill where they would conflict.** Same instincts (thin HTTP layer, no logic soup in handlers); fewer folders.
+Lighter than `paths/new-app/architecture`; **OVERRIDES it where they conflict.**
 
 ## Rules
-- Minimal layers: handler validates and calls a function; skip a separate repository/query module unless persistence *is* the core.
-- Skip OpenAPI-first, generated clients, and extra packages unless the assignment asks for an API contract.
-- Skip EU-provider selection unless data residency is in scope.
-- One app (plus a test project if you keep an integration test). No layered solution.
-- Pure logic (calculations, mapping, parsing) can still live in a plain function with no I/O if that keeps the core testable.
-- Generated files, if you have any, are still regenerated from source, never hand-edited.
-
-## Example
-`POST /payments` -> handler validates body -> `createPayment()` writes and returns 201. No import-job pipeline, no extra service/repository split.
+- Minimal layers: handler validates, calls a function, returns. No repository split unless persistence is the core.
+- **Separate services get separate databases**: one database server, one database per API (e.g. ledger and audit), each with its own database user, so code cannot cross them by mistake.
+- Cross-cutting concerns as middleware: request user resolved once and injected as a service; correlation ID middleware in every API, passed on to downstream calls and written in logs.
+- Simple types for simple projects: prefer an enum over a seeded lookup table when the set is small and the compiler should flag unhandled cases. Revisit if the brief says many more types are coming.
+- Failing dependencies: fail fast and say so clearly rather than retry-spamming an overloaded downstream. If it returns Retry-After, store it as an absolute timestamp in shared storage (e.g. Postgres) so all replicas respect it, and tell the client when to retry.
+- Must hold with two replicas: put shared state (locks, pause timestamps, idempotency records) in the database, not memory.
+- Draw it: keep an architecture diagram (Excalidraw or similar) so Robert can explain how parts belong together.
+- Skip OpenAPI-first, generated clients, extra packages unless the assignment asks for them.
