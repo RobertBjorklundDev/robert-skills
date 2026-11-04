@@ -4,7 +4,11 @@ description: Use when the API contract changes and the OpenAPI spec or generated
 ---
 
 # OpenAPI and generated client
+
+Follow [`core/typescript`](../../../../core/typescript/SKILL.md) for exports in files you write (generated client files are left as generated).
+
 ## Rules
+- Exports: `core/typescript` (end-of-file `export { a, b, type C }`; no default export unless a tool requires it).
 - `openapi.json` is generated from the API code; the client (orval) is generated from `openapi.json`.
 - Never hand-merge either. On conflict, take either side, then regenerate both.
 - Commit spec and client in the same PR as the API change.

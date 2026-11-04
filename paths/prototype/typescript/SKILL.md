@@ -7,7 +7,10 @@ description: Use when a time-boxed prototype is TypeScript/Node. Skip generated-
 
 Lighter than `paths/new-app/typescript`. **This path OVERRIDES those skills where they conflict.** How it is built still matches Robert (schema-validated handlers, no database calls in the HTTP layer) when those layers exist.
 
+Follow [`core/typescript`](../../../core/typescript/SKILL.md) for exports. This path does not override those rules.
+
 ## Rules
+- Exports: `core/typescript` (end-of-file `export { a, b, type C }`; no default export unless a tool requires it).
 - Hono (or the stack the assignment names): validate -> call a function -> status code. No database calls in handlers.
 - Error shape `{ error: { code, message } }` when you return JSON errors.
 - Skip OpenAPI generation and orval/clients unless the assignment is about the contract.
