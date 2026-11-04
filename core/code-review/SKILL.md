@@ -4,6 +4,9 @@ description: Use when reviewing a pull request or self-reviewing before asking f
 ---
 
 # Code review
+
+Path skills OVERRIDE this checklist where they conflict. On `paths/prototype`, skip the two-pull-request acceptance test-driven development (ATDD) item and do not require every error path if it is outside the assignment core. On `paths/existing-app`, follow the repo's review habits when they disagree with this list.
+
 ## Checklist
 - Does it match the ticket's acceptance criteria and nothing more?
 - Were approved tests left untouched (ATDD PR 2)?
