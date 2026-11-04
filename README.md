@@ -17,7 +17,7 @@ Sync into a project: `scripts/sync.sh <path> /path/to/project` (copies `core/` p
 | [about-robert](core/about-robert/SKILL.md) | DRAFT. Use to decide when to ask Robert, when to research, and when to spawn a subagent. |
 | [domain-research](core/domain-research/SKILL.md) | Use before building anything in a domain you have not worked in (banking, health, legal, etc.). |
 | [naming](core/naming/SKILL.md) | Use when naming files, folders, functions, endpoints, database tables, or tests. |
-| [typescript](core/typescript/SKILL.md) | Use when writing TypeScript on any path: named exports at the end of the file; no default exports unless a tool requires one; multi-arg functions take a named input object. |
+| [typescript](core/typescript/SKILL.md) | Use when writing TypeScript on any path: named exports at the end of the file; no default exports unless a tool requires one; multi-arg functions take a named input object; always declare explicit return types. |
 | [communication](core/communication/SKILL.md) | Use when writing tickets, pull request (PR) descriptions, docs, status updates, or messages to Robert. Expand abbreviations on first use. |
 | [code-review](core/code-review/SKILL.md) | Use when reviewing a pull request or self-reviewing before asking for review. |
 | [model-choice](core/ai/model-choice/SKILL.md) | Use when choosing a large language model (LLM) for a feature, a cloud coding agent, or an eval. |
