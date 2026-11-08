@@ -12,7 +12,7 @@ Follow [`ts-code-style-exports`](ts-code-style-exports.md) for exports.
 - Define routes with schema validation (zod / @hono/zod-openapi) so the OpenAPI spec is generated from code.
 - Handler: validate -> call service -> map result to status code. No DB calls in handlers.
 - Consistent error shape: `{ error: { code, message } }`.
-- Integration-test every route (see testing-policy).
+- Integration-test every route (`general-testing`).
 ## Example
 ```ts
 app.openapi(createCvRoute, async (c) => {

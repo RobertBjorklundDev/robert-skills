@@ -37,7 +37,7 @@ Shared topics: `architecture`, `testing`, `api`, `database`, `deploy`, `structur
    - Prototype: also add `prototype-workflow`. Keep the other skills; it does not replace them.
    - Existing app: keep `general-existing-app`; skip `general-new-app`.
    - `domain-*` only when the project is in that domain.
-4. Show Robert the list before copying. Mention DRAFT skills.
+4. Show Robert the list before copying. Include a `draft-*` file when its area matches, and tell Robert that skill is unfinished.
 5. Convert each picked file: `<name>.md` becomes `.cursor/skills/<name>/SKILL.md` (and `.claude/skills/<name>/SKILL.md` if the project uses Claude Code). Keep the frontmatter and body unchanged. Copy sibling reference files named `<name>.*` into that same skill folder, and rewrite those links to the filename only.
 6. Links between skills point to `<name>.md` in this repo. In the target, rewrite them to `../<name>/SKILL.md`, or drop the link and keep the skill name in backticks if that skill was not installed.
 7. Re-installing: overwrite the copied skill folders; do not touch skills in the target that did not come from this repo.
@@ -47,5 +47,5 @@ Shared topics: `architecture`, `testing`, `api`, `database`, `deploy`, `structur
 1. Choose the area: the narrowest technology or situation a repo must have for the skill to apply. A Docker deploy only for .NET is `dotnet-deploy-docker`; one for any stack is `docker-deploy`.
 2. Choose a topic from the shared list; add a new topic to the README only if none fits.
 3. Add a detail if needed (library, tool, case).
-4. Create `<area>-<topic>[-<detail>].md` with `name` equal to the filename and a `description` starting with "Use when".
+4. Create `<area>-<topic>[-<detail>].md` with `name` equal to the filename and a `description` starting with "Use when". If the skill is unfinished, prefix the filename with `draft-` (`draft-dotnet-api-minimal-endpoints.md`) and start the description with "DRAFT."
 5. Add a row to the README table for that area. A new area needs a row in the README area table and a line in this file.

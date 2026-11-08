@@ -12,7 +12,7 @@ This is for a new product when the time box allows doing it properly. Use the `g
 - Input-data agent (parses or searches input, not a chat agent): `backend-ai-agent-input-workflow`. Cases and gates first, then tune, then accept on precision and recall. Not the red/green test stack. The route around the agent still follows the backend workflow above.
 - Use `general-testing` for what to write and keep.
 - Use `general-architecture` for the stack and the root folders (frontend, backend, docker).
-- .NET: existing drafts `dotnet-structure-solution` and `dotnet-api-minimal-endpoints`.
+- .NET: `draft-dotnet-structure-solution` and `draft-dotnet-api-minimal-endpoints` (both unfinished).
 - TypeScript/Node: follow the `ts-code-style-*` skills, then `backend-ts-hono`, `ts-database-drizzle-migrations`, `backend-ts-openapi-client`, `ts-ui-i18n-locales`.
 - Frontend: `ui-workflow`. Stacked branches `feat/<feature-name>/design-0` (Excalidraw), then `scaffold-0` (fake data), then `implementation-0` (real state and API). No test branch.
 

@@ -1,6 +1,6 @@
 ---
 name: react-architecture-slotted-components
-description: Use when building compound React components (Card, Dialog, FormField) on the slotted collection base; parent owns layout order. This is how a complex React component is created.
+description: Use when creating a complex React component as a slotted compound component (for example a Card) on the slotted collection base. The parent owns layout order.
 ---
 
 # Slotted components
@@ -14,7 +14,7 @@ Follow the `ts-code-style-*` skills in the reference files.
 ## Rules
 
 - One `defineSlots({ slots: [...] as const, displayName: 'ComponentName' })` per compound parent, usually in the same file as the parent or a sibling `*.slots.ts`.
-- PascalCase slot names on the parent: `Card.Header`, `FormField.Control` (matches the string in `slots`).
+- PascalCase slot names on the parent: `Card.Header`, `Card.Body` (matches the string in `slots`).
 - Render optional sections only when `slots.Section` is defined—no empty wrappers.
 - Required slots: check after `collectSlots` in development (`console.error` if missing). TypeScript cannot enforce child composition; document required slots in the props/JSDoc.
 - Slot props (`className`, `variant`, `as`) live on the slot component; the parent reads them from the collected `ReactElement` via `cloneElement` only when merging layout styles.
@@ -25,8 +25,7 @@ Follow the `ts-code-style-*` skills in the reference files.
 Full implementations and tests:
 
 - [`react-architecture-slotted-components.card.tsx`](react-architecture-slotted-components.card.tsx) — optional `Header` / `Body` / `Footer`, sections omitted when absent.
-- [`react-architecture-slotted-components.form-field.tsx`](react-architecture-slotted-components.form-field.tsx) — required `Label` and `Control`; optional `Hint` and `Error`.
-- [`react-architecture-slotted-components.test.tsx`](react-architecture-slotted-components.test.tsx) — order, required-slot dev error, empty sections hidden.
+- [`react-architecture-slotted-components.test.tsx`](react-architecture-slotted-components.test.tsx) — parent order, missing optional sections hidden.
 
 ## Consumer usage
 
@@ -36,20 +35,13 @@ Full implementations and tests:
   <Card.Header title="Billing" />
   <Card.Body>{children}</Card.Body>
 </Card>
-
-<FormField>
-  <FormField.Control>
-    <input aria-labelledby="email-label" />
-  </FormField.Control>
-  <FormField.Label id="email-label">Email</FormField.Label>
-  <FormField.Error>Invalid address</FormField.Error>
-</FormField>
 ```
 
-Parent render order is always Header → Body → Footer (Card) and Label → Control → Hint → Error (FormField), regardless of JSX order.
+Parent render order is always Header → Body → Footer, regardless of JSX order.
 
 ## When not to use
 
+- Forms. Use React Hook Form. Do not build a slotted form field.
 - Simple layout with a handful of props—pass `title`, `footer`, or `children` directly.
 - Consumers must wrap slots in their own components—use **named props** instead (`header={...}`, `footer={...}`) or a render-prop; collection only sees direct slot children.
 - Cross-cutting slot state or portal-like overlays—use a different pattern (context, headless primitive), not synchronous child scanning.

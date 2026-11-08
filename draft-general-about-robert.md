@@ -1,5 +1,5 @@
 ---
-name: general-about-robert
+name: draft-general-about-robert
 description: DRAFT. Use to decide when to ask Robert, when to research, and when to spawn a subagent instead of relying on his knowledge; also how he likes to work with agents.
 ---
 

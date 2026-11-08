@@ -1,5 +1,5 @@
 ---
-name: dotnet-structure-solution
+name: draft-dotnet-structure-solution
 description: DRAFT. Use when creating or organising a .NET solution.
 ---
 

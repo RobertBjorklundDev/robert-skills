@@ -6,13 +6,13 @@ This repo is a library to pick from, not something to load whole. To install ski
 
 ## Naming
 
-Every file is named `<area>-<topic>[-<detail>].md`, lowercase with dashes. The frontmatter `name` equals the filename without `.md`.
+Every file is named `<area>-<topic>[-<detail>].md`, lowercase with dashes. The frontmatter `name` equals the filename without `.md`. An unfinished skill starts with `draft-` (`draft-dotnet-api-minimal-endpoints.md`). The rest of the name still follows area, topic, detail.
 
 - **Area first.** The area is the narrowest technology or situation a repo must have for the skill to apply. A Docker deploy that only makes sense for .NET is `dotnet-deploy-docker.md`; one that works for any stack is `docker-deploy.md`.
 - **Topic second**, from the shared topic list below, so the same topic lines up across areas (`backend-workflow`, `ui-workflow`).
 - **Detail last**, free text: the library, tool, or specific case. A backend skill starts with `backend`, then the language, then the tool (`backend-ts-hono`, `backend-ts-openapi-client`).
 
-Pick by area: a .NET repo takes `general-*` plus `dotnet-*`. Find a topic across areas: `*-testing*`.
+Pick by area: a .NET repo takes `general-*` plus `dotnet-*`, and any `draft-*` file for those areas. Find a topic across areas: `*-testing*`.
 
 ### Areas
 
@@ -39,13 +39,13 @@ Add a new area only when no existing one fits, and add it to this table and to [
 
 ## Skills
 
-DRAFT means incomplete; ask Robert before relying on it.
+A filename that starts with `draft-` means the skill is incomplete. Ask Robert before relying on it.
 
 ### `general` — every repo
 
 | Skill | When to use |
 |---|---|
-| [general-about-robert](general-about-robert.md) | DRAFT. Use to decide when to ask Robert, when to research, and when to spawn a subagent. |
+| [draft-general-about-robert](draft-general-about-robert.md) | DRAFT. Use to decide when to ask Robert, when to research, and when to spawn a subagent. |
 | [general-architecture](general-architecture.md) | Use when choosing the stack or the root layout. .NET or Node, React, PostgreSQL, OpenAPI between them, `frontend/`, `backend/`, `docker/`. |
 | [general-code-review](general-code-review.md) | Use when reviewing a pull request. Shared checks only. .NET reading is `backend-dotnet-code-review`, TypeScript backend reading is `backend-ts-code-review`, frontend reading is `react-code-review`. |
 | [general-communication](general-communication.md) | Use when writing tickets, pull request (PR) descriptions, docs, status updates, or messages to Robert. Expand abbreviations on first use. |
@@ -79,8 +79,8 @@ For a prototype, add `prototype-workflow`. The other skills still apply. It adds
 
 | Skill | When to use |
 |---|---|
-| [dotnet-api-minimal-endpoints](dotnet-api-minimal-endpoints.md) | DRAFT. Use when building HTTP endpoints in .NET with minimal APIs. |
-| [dotnet-structure-solution](dotnet-structure-solution.md) | DRAFT. Use when creating or organising a .NET solution. |
+| [draft-dotnet-api-minimal-endpoints](draft-dotnet-api-minimal-endpoints.md) | DRAFT. Use when building HTTP endpoints in .NET with minimal APIs. |
+| [draft-dotnet-structure-solution](draft-dotnet-structure-solution.md) | DRAFT. Use when creating or organising a .NET solution. |
 
 ### `ts` — TypeScript
 
@@ -104,7 +104,7 @@ For a prototype, add `prototype-workflow`. The other skills still apply. It adds
 | [react-structure-feature-folders](react-structure-feature-folders.md) | Use when creating or moving files: one folder per feature (components, api, logic, utils) with nested sub-features. |
 | [react-architecture-component-logic](react-architecture-component-logic.md) | Use when a component grows big: move logic into `logic/` as pure functions or hooks so it can be tested. |
 | [react-architecture-slotted-component-base](react-architecture-slotted-component-base.md) | Use when building the reusable slot-collection core for compound React components (`defineSlots`, `collectSlots`). |
-| [react-architecture-slotted-components](react-architecture-slotted-components.md) | Use when creating a complex React component. Slotted compound components (Card, Dialog, FormField); the parent owns layout order. |
+| [react-architecture-slotted-components](react-architecture-slotted-components.md) | Use when creating a complex React component. Slotted compound components (for example a Card); the parent owns layout order. |
 | [react-api-orval-react-query](react-api-orval-react-query.md) | Use when a component reads or writes API data: orval-generated React Query hooks only, no hand-written fetch. |
 | [react-state-local](react-state-local.md) | Use when a component needs client state: URL first, then `useState` or `useReducer`, React Context inside one feature, Zustand only across features. |
 | [react-state-url](react-state-url.md) | Use when UI state belongs in the query string. Typed search params with nuqs. Path params stay on the router. |

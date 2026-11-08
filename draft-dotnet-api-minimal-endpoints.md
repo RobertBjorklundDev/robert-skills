@@ -1,5 +1,5 @@
 ---
-name: dotnet-api-minimal-endpoints
+name: draft-dotnet-api-minimal-endpoints
 description: DRAFT. Use when building HTTP endpoints in .NET with minimal APIs.
 ---
 
