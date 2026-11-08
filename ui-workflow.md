@@ -7,6 +7,8 @@ description: Use when implementing a screen, flow, or frontend feature, or cutti
 
 `general-existing-app` overrides this skill where it conflicts. A prototype follows this same workflow (`prototype-workflow`). Backend and API work uses `backend-workflow`. This flow has no test branch and these pull requests (PRs) do not add tests.
 
+In a React app, a complex component is a slotted compound component (`react-architecture-slotted-components`, built on `react-architecture-slotted-component-base`). The parent owns layout and render order. A simple component takes props or `children` directly.
+
 ## Stack
 Cut each branch from the previous one. `design-0` is cut from the default branch. Each PR targets its parent branch.
 

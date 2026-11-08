@@ -17,6 +17,7 @@ React is always written in TypeScript, so the `ts-*` skills apply too. Do not ad
 | Local state | URL first, then `useState` or `useReducer`, Context inside one feature; Zustand only across features | `react-state-local`, `react-state-url` |
 | Routing | React Router for a lighter client. TanStack Start when `general-architecture` calls the frontend heavy | `react-routing-react-router` |
 | Components | shadcn/ui, styled with Tailwind | `general-architecture` |
+| Complex components | Slotted compound components. The parent owns layout order | `react-architecture-slotted-components`, `react-architecture-slotted-component-base` |
 | Folders | Feature folders with nested sub-features | `react-structure-feature-folders` |
 | Logic | Extracted from big components into `logic/` | `react-architecture-component-logic` |
 | Tests | Playwright end-to-end (E2E); unit tests only for extracted logic | `react-testing-playwright` |

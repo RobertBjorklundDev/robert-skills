@@ -103,6 +103,8 @@ For a prototype, add `prototype-workflow`. The other skills still apply. It adds
 | [react-code-review](react-code-review.md) | Use when reviewing or reading a frontend change. Sketch and screen first, then route, component, data, state, and styling. |
 | [react-structure-feature-folders](react-structure-feature-folders.md) | Use when creating or moving files: one folder per feature (components, api, logic, utils) with nested sub-features. |
 | [react-architecture-component-logic](react-architecture-component-logic.md) | Use when a component grows big: move logic into `logic/` as pure functions or hooks so it can be tested. |
+| [react-architecture-slotted-component-base](react-architecture-slotted-component-base.md) | Use when building the reusable slot-collection core for compound React components (`defineSlots`, `collectSlots`). |
+| [react-architecture-slotted-components](react-architecture-slotted-components.md) | Use when creating a complex React component. Slotted compound components (Card, Dialog, FormField); the parent owns layout order. |
 | [react-api-orval-react-query](react-api-orval-react-query.md) | Use when a component reads or writes API data: orval-generated React Query hooks only, no hand-written fetch. |
 | [react-state-local](react-state-local.md) | Use when a component needs client state: URL first, then `useState` or `useReducer`, React Context inside one feature, Zustand only across features. |
 | [react-state-url](react-state-url.md) | Use when UI state belongs in the query string. Typed search params with nuqs. Path params stay on the router. |
