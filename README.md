@@ -52,6 +52,8 @@ Sync into a project: `scripts/sync.sh <path> /path/to/project` (copies `core/` p
 | [drizzle-migrations](paths/new-app/typescript/drizzle-migrations/SKILL.md) | Use when changing a database schema with Drizzle ORM, or resolving migration conflicts after a rebase. |
 | [openapi-client](paths/new-app/typescript/openapi-client/SKILL.md) | Use when the API contract changes and the OpenAPI spec or generated client (e.g. orval) must be updated, or when they conflict in a merge. |
 | [i18n-locales](paths/new-app/typescript/i18n-locales/SKILL.md) | Use when adding or changing user-visible UI text, or reviewing a PR with hardcoded strings. |
+| [slotted-component-base](paths/new-app/typescript/slotted-component-base/SKILL.md) | Use when building the reusable slot-collection core for compound React components (defineSlots factory, collectSlots, dev warnings). |
+| [slotted-components](paths/new-app/typescript/slotted-components/SKILL.md) | Use when building compound React components (Card, Dialog, FormField) on the slotted collection base; parent owns layout order. |
 | [mobbin-design-reference](paths/new-app/design/mobbin-design-reference/SKILL.md) | Use when making user interface / user experience (UI/UX) layout or flow decisions, before inventing a pattern. |
 
 ### `paths/existing-app/` — a repo that already has conventions
