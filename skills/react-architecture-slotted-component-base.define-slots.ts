@@ -19,7 +19,7 @@ type SlotComponentProps = {
 type SlotComponent<N extends string> = ((
   props: SlotComponentProps,
 ) => ReactElement) & {
-  readonly [SLOT_NAME_KEY]: N;
+  [SLOT_NAME_KEY]: N;
   displayName: string;
 };
 

@@ -24,7 +24,7 @@ function CardHeader(props: CardHeaderProps): ReactElement {
   );
 }
 
-(CardHeader as { [SLOT_NAME_KEY]: string })[SLOT_NAME_KEY] = 'Header';
+(CardHeader as unknown as { [SLOT_NAME_KEY]: string })[SLOT_NAME_KEY] = 'Header';
 CardHeader.displayName = 'Card.Header';
 
 type CardProps = {
