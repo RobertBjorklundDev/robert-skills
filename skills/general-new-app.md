@@ -8,7 +8,7 @@ description: Use when starting a startup or greenfield app and there is time for
 This is for a new product when the time box allows doing it properly. Use the `general-*` skills plus the stack skills for the repo (`dotnet-*`, `ts-*`, and so on).
 
 ## What to do
-- Backend: `backend-workflow`. Ticket with acceptance criteria and API shape, then stacked branches `feat/<feature-name>/tests-0` and `feat/<feature-name>/implementation-0`. The implementation does not edit approved tests. No separate hotfix pull requests (PRs). Merge only when continuous integration (CI) is green.
+- Backend: `backend-workflow`. Cut `feature/<ticket>` from the default branch. Ticket with acceptance criteria and API shape, then `atdd/<ticket>-tests` (OpenAPI, stubs, integration tests, manifest) and `atdd/<ticket>-impl` (implementation only; approved tests stay byte-identical). Merge `feature/<ticket>` to the default branch once when API, UI, and agent work are done. No separate hotfix pull requests (PRs). Merge only when continuous integration (CI) is green.
 - Input-data agent (parses or searches input, not a chat agent): `backend-ai-agent-input-workflow`. Cases and gates first, then tune, then accept on precision and recall. Not the red/green test stack. The route around the agent still follows the backend workflow above.
 - Use `general-testing` for what to write and keep.
 - Use `general-architecture` for the stack and the root folders (frontend, backend, docker).

@@ -5,7 +5,7 @@ description: Use when implementing a screen, flow, or frontend feature, or cutti
 
 # Frontend workflow (stacked pull requests)
 
-`general-existing-app` overrides this skill where it conflicts. A prototype follows this same workflow (`prototype-workflow`). Backend and API work uses `backend-workflow`. This flow has no test branch and these pull requests (PRs) do not add tests.
+`general-existing-app` overrides this skill where it conflicts. A prototype follows this same workflow (`prototype-workflow`). Backend and API work uses `backend-workflow` on a long-lived `feature/<ticket>` branch with `atdd/<ticket>-*` pull requests. This flow has no test branch and these pull requests (PRs) do not add tests. When the project uses that backend model, cut `feature/<ticket>` once and target UI stacked PRs at that branch (or at the default branch only if the repo still does UI that way).
 
 In a React app, a complex component is a slotted compound component (`react-architecture-slotted-components`, built on `react-architecture-slotted-component-base`). The parent owns layout and render order. A simple component takes props or `children` directly.
 
@@ -27,7 +27,7 @@ Cut each branch from the previous one. `design-0` is cut from the default branch
 ## Phases
 1. **Design draft** (`design-*`): an Excalidraw sketch Robert can decide on, via `ui-design-workflow` (Mobbin references, then the sketch). The PR records the chosen sketch (link or export) and the references. No application code. Robert approves the sketch before any UI code.
 2. **Scaffold with fake data** (`scaffold-*`): the screens from the approved sketch, clickable, with local fake data. Include the routes needed to walk the flow. No API calls and no server state. Robert reviews the fake-data flow before it is connected.
-3. **Full implementation** (`implementation-*`): replace the fake data with real client state and the API the screen uses. Remove the fake data. In a React app, state is `react-state-local` and server data is `react-api-orval-react-query`. The API contract comes from `backend-workflow`; if that API is not ready, stay on the scaffold branch.
+3. **Full implementation** (`implementation-*`): replace the fake data with real client state and the API the screen uses. Remove the fake data. In a React app, state is `react-state-local` and server data is `react-api-orval-react-query`. The API contract comes from `backend-workflow` (test-run on `feature/<ticket>`); if that API is not ready, stay on the scaffold branch.
 4. **Done**: every PR in the stack is merged, the screen uses real state and API connections, and no fake data remains. When a parent PR merges, retarget the child PR to the branch that parent targeted.
 
 ## Pull requests

@@ -67,7 +67,7 @@ For a prototype, add `prototype-workflow`. The other skills still apply. It adds
 
 | Skill | When to use |
 |---|---|
-| [backend-workflow](skills/backend-workflow.md) | Use when writing a backend or API ticket, starting that work, or cutting, opening, stacking, sequencing, merging, or fixing its pull requests. First branch is `feat/<feature-name>/tests-0`, then `feat/<feature-name>/implementation-0`. |
+| [backend-workflow](skills/backend-workflow.md) | Use when writing a backend or API ticket, starting that work, or cutting, opening, sequencing, merging, or fixing its pull requests on a long-lived `feature/<ticket>` branch. Acceptance test-driven development (ATDD): `atdd/<ticket>-tests`, then `atdd/<ticket>-impl`. |
 | [backend-dotnet-code-review](skills/backend-dotnet-code-review.md) | Use when reviewing or reading a .NET backend change. Test and behaviour first, then the minimal-API endpoint, the rule, and the EF Core change. |
 | [backend-ts-code-review](skills/backend-ts-code-review.md) | Use when reviewing or reading a TypeScript or Node backend change. Test and behaviour first, then the Hono route, the rule, and the Drizzle change. |
 | [backend-ts-hono](skills/backend-ts-hono.md) | Use when building or changing an HTTP API in TypeScript/Node with Hono. |
