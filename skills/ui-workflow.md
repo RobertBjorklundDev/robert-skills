@@ -1,16 +1,16 @@
 ---
 name: ui-workflow
-description: Use when implementing a screen, flow, or frontend feature, or cutting, opening, sequencing, merging, or fixing its pull requests into feature/<name>/integration. No tests. Phases are ui-design (sketch), ui-scaffold (fake data), then ui (real state and API); ui may be an app name.
+description: Use when implementing a screen, flow, or frontend feature, or cutting, opening, sequencing, merging, or fixing its pull requests into feature/<ticket-or-epic-id>/integration. No tests. Phases are ui-design (sketch), ui-scaffold (fake data), then ui (real state and API); ui may be an app name.
 ---
 
 # Frontend workflow (integration branch)
 
-`general-existing-app` overrides this skill where it conflicts. A prototype follows this same workflow (`prototype-workflow`). Backend and API work uses `backend-workflow` on the **same** `feature/<name>/integration` branch. This flow has no test branch and these pull requests (PRs) do not add automated tests.
+`general-existing-app` overrides this skill where it conflicts. A prototype follows this same workflow (`prototype-workflow`). Backend and API work uses `backend-workflow` on the **same** `integration` branch. This flow has no test branch and these pull requests (PRs) do not add automated tests.
 
 In a React app, a complex component is a slotted compound component (`react-architecture-slotted-components`, built on `react-architecture-slotted-component-base`). The parent owns layout and render order. A simple component takes props or `children` directly.
 
 ## Integration branch
-Use the same long-lived branch as `backend-workflow`: `feature/<ticket>/integration` for a single ticket, or `feature/<epic-name>/integration` for an epic (with `feature/<epic-name>/<ticket>/…` for per-ticket UI work). Every UI PR targets `integration`, not the default branch.
+Use the same long-lived branch as `backend-workflow`: `feature/<ticket>/integration` for a single ticket, or `feature/<epic-id>/integration` for an epic (for example `feature/PROJ-100/integration`, with per-ticket UI branches such as `feature/PROJ-100/PROJ-101/ui-design`). Prefer ticket ids; a descriptive slug is allowed only when there is no ticket id and the work is not under an epic. Every UI PR targets `integration`, not the default branch.
 
 Replace the prefix `ui` with an **app name** when the repo names frontends that way (for example `studio-design`, `studio-scaffold`, `studio`). The **last path segment** is still the mode for CI.
 
@@ -25,13 +25,13 @@ Replace the prefix `ui` with an **app name** when the repo names frontends that 
 | `feature/<ticket>/<app>-scaffold` | Scaffold (app-named variant) |
 | `feature/<ticket>/<app>` | Full implementation (app-named variant) |
 
-Epic: insert `/<ticket>/` before the mode segment (`feature/<epic-name>/<ticket>/ui-design`, and so on).
+Epic: insert `/<ticket>/` before the mode segment (`feature/<epic-id>/<ticket>/ui-design`, and so on).
 
 ## Sequence
 
 ```
 <default>
-└── feature/<name>/integration
+└── feature/<ticket-or-epic-id>/integration
     ├── feature/.../ui-design      # optional extra design PR if needed
     ├── feature/.../ui-scaffold
     ├── feature/.../ui             # after API contract exists (or app-named equivalent)

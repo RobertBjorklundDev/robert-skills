@@ -1,6 +1,6 @@
 ---
 name: backend-workflow
-description: Use when writing a backend or API ticket, starting that work, launching a coding agent on it, or cutting, opening, sequencing, merging, or fixing its pull requests. Long-lived feature/<name>/integration; acceptance test-driven development (ATDD) via feature/.../tests then feature/.../impl.
+description: Use when writing a backend or API ticket, starting that work, launching a coding agent on it, or cutting, opening, sequencing, merging, or fixing its pull requests. Long-lived feature/<ticket-or-epic-id>/integration; acceptance test-driven development (ATDD) via feature/.../tests then feature/.../impl.
 ---
 
 # Backend workflow (acceptance test-driven development)
@@ -12,18 +12,18 @@ description: Use when writing a backend or API ticket, starting that work, launc
 - Behaviour only. Implementation notes belong in the pull request (PR), not the ticket.
 
 ## Planning
-- An **epic** may have several test-run PRs — one per ticket — all merging into the same `feature/<epic-name>/integration` branch.
+- An **epic** may have several test-run PRs — one per ticket — all merging into the same `feature/<epic-id>/integration` branch (for example `feature/PROJ-100/integration`).
 - Plan **small tickets**. Write **all** integration tests for a ticket in a single `tests` PR.
 - Need a **second** `tests` PR for the **same** ticket? Split the ticket instead.
 - A **wrong** test after the test-run merged: open a `test-fix` PR, not `impl`.
 
 ## Integration branch
-Git cannot hold both `feature/<name>` and `feature/<name>/…`, so the long-lived branch is always **`feature/<name>/integration`**.
+Git cannot hold both `feature/<segment>` and `feature/<segment>/…`, so the long-lived branch is always **`feature/<segment>/integration`**.
 
-- **Single ticket:** `feature/<ticket>/integration`. The ticket id appears once in each branch name.
-- **Epic:** `feature/<epic-name>/integration`. Per-ticket work uses an extra path segment before the mode (ticket id still appears once in the branch name).
+- **Single ticket:** `feature/<ticket>/integration`. Prefer the ticket id. A descriptive slug is allowed **only** when there is no ticket id and the work is **not** under an epic.
+- **Epic:** `feature/<epic-id>/integration`. Use the epic’s **ticket id**, not a descriptive name (for example `feature/PROJ-100/integration`, not a behaviour slug). Child tickets add a path segment before the mode (for example `feature/PROJ-100/PROJ-101/tests`). Each ticket id still appears once in the branch name.
 
-Merge `feature/<name>/integration` into the default branch **once**, when API, UI, agent work on that branch are complete, continuous integration (CI) is green, and the owner has reviewed it.
+Merge `integration` into the default branch **once**, when API, UI, agent work on that branch are complete, continuous integration (CI) is green, and the owner has reviewed it.
 
 Every work PR targets the matching `integration` branch, not the default branch. The **last path segment** of the source branch is the mode (no PR labels for mode).
 
@@ -43,26 +43,26 @@ Base: `feature/<ticket>/integration`
 
 ## Branch modes (epic)
 
-Base: `feature/<epic-name>/integration`
+Base: `feature/<epic-id>/integration`
 
 | Source branch | Mode |
 | --- | --- |
-| `feature/<epic-name>/<ticket>/tests` | Test-run for that ticket |
-| `feature/<epic-name>/<ticket>/test-fix` | Test-fix for that ticket |
-| `feature/<epic-name>/<ticket>/tests-<scenario>` | Dry-run for that ticket |
-| `feature/<epic-name>/<ticket>/impl` | Implementation for that ticket |
-| `feature/<epic-name>/<ticket>/ui` or `.../<app>` | UI for that ticket |
-| `feature/<epic-name>/<ticket>/agent` | Agent for that ticket |
+| `feature/<epic-id>/<ticket>/tests` | Test-run for that ticket |
+| `feature/<epic-id>/<ticket>/test-fix` | Test-fix for that ticket |
+| `feature/<epic-id>/<ticket>/tests-<scenario>` | Dry-run for that ticket |
+| `feature/<epic-id>/<ticket>/impl` | Implementation for that ticket |
+| `feature/<epic-id>/<ticket>/ui` or `.../<app>` | UI for that ticket |
+| `feature/<epic-id>/<ticket>/agent` | Agent for that ticket |
 
 ## Sequence
 
 ```
 <default>
-└── feature/<name>/integration          # long-lived; every PR merges here first
-    ├── feature/.../tests               # PR 1 (per ticket)
-    ├── feature/.../impl                # PR 2 (per ticket)
+└── feature/<ticket-or-epic-id>/integration   # long-lived; every PR merges here first
+    ├── feature/<ticket>/tests                # single ticket (or feature/<epic-id>/<ticket>/tests)
+    ├── feature/.../impl
     ├── feature/.../ui-design, ui-scaffold, ui   # optional; ui-workflow
-    ├── feature/.../agent               # optional
+    ├── feature/.../agent
     └── merge integration → default once
 ```
 
@@ -86,7 +86,8 @@ Base: `feature/<epic-name>/integration`
 
 ## CI guards (recommended)
 - Run the guard script from the **PR base** ref (`integration`, not the PR head), so a PR cannot weaken its own guards in the same change.
-- Derive **mode from the last path segment** of the source branch (`tests`, `test-fix`, `impl`, `agent`, `ui`, `ui-design`, `ui-scaffold`, an app name or `app-scaffold` / `app-design`, or `tests-<scenario>` for dry-runs). Epic branches: ignore middle segments; still use the last segment for mode.
+- Derive **mode from the last path segment** of the source branch (`tests`, `test-fix`, `impl`, `agent`, `ui`, `ui-design`, `ui-scaffold`, an app name or `app-scaffold` / `app-design`, or `tests-<scenario>` for dry-runs). Epic branches such as `feature/PROJ-100/PROJ-101/tests` still use the last segment (`tests`); `<epic-id>` and child `<ticket>` segments are not modes.
+- Require the PR **base** to be `feature/<epic-id>/integration` for epic work and `feature/<ticket>/integration` for single-ticket work, and require the source branch prefix to match that base (same `<epic-id>` or `<ticket>` as the first segment after `feature/`).
 - Enforce **per-mode path allowlists** (for example `tests`: OpenAPI, generated client, route stubs, tests, manifest — no database or service implementation paths; `ui` and `agent`: no API source tree).
 - For each new pending manifest row, run the case against stubs with a stub-check mode; it must fail with HTTP 501 and `not_implemented`.
 - **Fail closed** when the source branch targets `feature/*/integration` but the last segment is not a recognised mode.
