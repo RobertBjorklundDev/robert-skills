@@ -1,9 +1,11 @@
 ---
 name: react-routing-react-router
-description: Use when adding or changing routes in a React app. React Router (v8 at the time of writing) in framework mode, routes declared in `app/routes.ts` with the `route`/`index`/`layout`/`prefix` helpers, and thin typed route modules that render feature components.
+description: Use when adding or changing routes in a React app that uses React Router (not TanStack Start). React Router (v8 at the time of writing) in framework mode, `app/routes.ts` config, and thin route modules. For TanStack file routes, use `react-routing-tanstack-router`.
 ---
 
 # React routing with React Router
+
+For TanStack Start file routes, use `react-routing-tanstack-router`.
 
 Use the latest React Router in framework mode (the Vite plugin). It gives typed params, typed route modules, type-safe links, and code splitting per route. Check the installed major version before copying APIs; docs at [reactrouter.com](https://reactrouter.com).
 

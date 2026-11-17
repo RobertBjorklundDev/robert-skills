@@ -6,14 +6,14 @@ description: Use when a React component needs client-side state. Prefer the URL,
 # React local state
 
 ## Rules
-- Put state in the URL when a refresh, a shared link, or the Back button should keep it (filters, tabs, selected id, pagination). Path params use the router. Search params use `react-state-url` (nuqs).
+- Put state in the URL when a refresh, a shared link, or the Back button should keep it (filters, tabs, selected id, pagination). Path params use the router. Search params use `react-state-url` (nuqs on React Router) or `react-state-url-tanstack-router` on TanStack Start.
 - Then pick the simplest client state that works:
   1. `useState` for simple, component-owned state.
   2. `useReducer` when state has several related fields or transitions. Keep the reducer as a pure function in `logic/` so it can be unit tested.
   3. Inside one feature, share that state with React Context. A small feature can use Context around `useState`. A feature whose components, including sub-features, share related state can use Context around `useReducer`. Put the provider on that feature, not on the app root.
   4. Keep values that change often (each keystroke) in the component that owns the input, so a feature Context does not re-render the whole tree on every change.
   5. Zustand only for client state shared across many features (for example a multi-step editor that spans features). One store per feature, in the feature's `state/` folder.
-- Server data is never local state or Context. It comes from React Query (`react-api-orval-react-query`).
+- Server data is never local state or Context. It comes from React Query: orval hooks (`react-api-orval-react-query`) or TanStack Start server functions (`react-api-tanstack-start-server-functions`).
 
 ## Example
 

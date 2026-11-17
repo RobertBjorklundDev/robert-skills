@@ -1,9 +1,11 @@
 ---
 name: react-structure-feature-folders
-description: Use when creating, moving, or reviewing files in a React app. Code lives in one folder per feature (components, api, logic, utils), and a feature can hold sub-features in its own `features/` folder with the same structure.
+description: Use when creating, moving, or reviewing files in a React Router app with `app/features/` layout. One folder per feature (components, api, logic, utils) and nested sub-features. TanStack Start apps use `react-structure-pages-widgets-entities` instead.
 ---
 
 # React feature folders
+
+TanStack Start apps use `react-structure-pages-widgets-entities`, not this layout.
 
 Everything for one feature lives in one folder named after the feature. A sub-feature is a feature inside the parent's `features/` folder and follows the same structure. This is Robert's own layout, inspired by feature slices; do not apply full Feature-Sliced Design (layers like `entities/` and `widgets/`).
 

@@ -99,16 +99,20 @@ For a prototype, add `prototype-workflow`. The other skills still apply. It adds
 
 | Skill | When to use |
 |---|---|
-| [react-architecture-stack](skills/react-architecture-stack.md) | Use when starting or adding a library to a React app: the stack (pnpm, Prettier, orval + React Query, shadcn/ui, Tailwind, Zustand last, Playwright) and which skill covers each part. Router choice is `general-architecture`. |
+| [react-architecture-stack](skills/react-architecture-stack.md) | Use when starting or adding a library to a React app: the stack (pnpm, Prettier, TanStack Query, shadcn/ui, Tailwind, Zustand last, Playwright) and which skill covers each part. React Router vs TanStack Start rows; router choice is also `general-architecture`. |
 | [react-code-review](skills/react-code-review.md) | Use when reviewing or reading a frontend change. Sketch and screen first, then route, component, data, state, and styling. |
-| [react-structure-feature-folders](skills/react-structure-feature-folders.md) | Use when creating or moving files: one folder per feature (components, api, logic, utils) with nested sub-features. |
+| [react-api-tanstack-start-server-functions](skills/react-api-tanstack-start-server-functions.md) | Use when TanStack Start reads or writes data: `createServerFn` as BFF, hand-written React Query `queryOptions` and optimistic saves, not orval `react-query` hooks. |
+| [react-structure-feature-folders](skills/react-structure-feature-folders.md) | Use when creating or moving files in a React Router app: one folder per feature (components, api, logic, utils) with nested sub-features. |
+| [react-structure-pages-widgets-entities](skills/react-structure-pages-widgets-entities.md) | Use when creating or moving files in TanStack Start: `pages`, `widgets`, `entities`, and `shared` beside file routes. |
 | [react-architecture-component-logic](skills/react-architecture-component-logic.md) | Use when a component grows big: move logic into `logic/` as pure functions or hooks so it can be tested. |
 | [react-architecture-slotted-component-base](skills/react-architecture-slotted-component-base.md) | Use when building the reusable slot-collection core for compound React components (`defineSlots`, `collectSlots`). |
 | [react-architecture-slotted-components](skills/react-architecture-slotted-components.md) | Use when creating a complex React component. Slotted compound components (for example a Card); the parent owns layout order. |
-| [react-api-orval-react-query](skills/react-api-orval-react-query.md) | Use when a component reads or writes API data: orval-generated React Query hooks only, no hand-written fetch. |
+| [react-api-orval-react-query](skills/react-api-orval-react-query.md) | Use when the browser calls the API through orval-generated React Query hooks. Not TanStack Start server functions. |
 | [react-state-local](skills/react-state-local.md) | Use when a component needs client state: URL first, then `useState` or `useReducer`, React Context inside one feature, Zustand only across features. |
-| [react-state-url](skills/react-state-url.md) | Use when UI state belongs in the query string. Typed search params with nuqs. Path params stay on the router. |
-| [react-routing-react-router](skills/react-routing-react-router.md) | Use when adding or changing routes: React Router framework mode, `app/routes.ts` config, thin typed route modules. |
+| [react-state-url](skills/react-state-url.md) | Use when UI state belongs in the query string on React Router. Typed search params with nuqs. |
+| [react-state-url-tanstack-router](skills/react-state-url-tanstack-router.md) | Use when UI state belongs in the query string on TanStack Router or TanStack Start. `validateSearch` on the route. |
+| [react-routing-react-router](skills/react-routing-react-router.md) | Use when adding or changing routes in React Router framework mode, `app/routes.ts` config, thin route modules. |
+| [react-routing-tanstack-router](skills/react-routing-tanstack-router.md) | Use when adding or changing file routes on TanStack Start or TanStack Router; thin `src/routes` shells and loaders. |
 | [react-testing-playwright](skills/react-testing-playwright.md) | Use when testing a React app: Playwright E2E per user flow, unit tests only for extracted logic, no component tests. |
 
 ### `ai` — AI features
