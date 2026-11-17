@@ -67,7 +67,7 @@ For a prototype, add `prototype-workflow`. The other skills still apply. It adds
 
 | Skill | When to use |
 |---|---|
-| [backend-workflow](skills/backend-workflow.md) | Use when writing a backend or API ticket, starting that work, or cutting, opening, stacking, sequencing, merging, or fixing its pull requests. First branch is `feat/<feature-name>/tests-0`, then `feat/<feature-name>/implementation-0`. |
+| [backend-workflow](skills/backend-workflow.md) | Use when writing a backend or API ticket, starting that work, or cutting, opening, sequencing, merging, or fixing its pull requests into `feature/<ticket-or-epic-id>/integration`. Acceptance test-driven development (ATDD): `feature/.../tests`, then `feature/.../impl`; epics use `feature/<epic-id>/<ticket>/…`. |
 | [backend-dotnet-code-review](skills/backend-dotnet-code-review.md) | Use when reviewing or reading a .NET backend change. Test and behaviour first, then the minimal-API endpoint, the rule, and the EF Core change. |
 | [backend-ts-code-review](skills/backend-ts-code-review.md) | Use when reviewing or reading a TypeScript or Node backend change. Test and behaviour first, then the Hono route, the rule, and the Drizzle change. |
 | [backend-ts-hono](skills/backend-ts-hono.md) | Use when building or changing an HTTP API in TypeScript/Node with Hono. |
@@ -127,7 +127,7 @@ For a prototype, add `prototype-workflow`. The other skills still apply. It adds
 |---|---|
 | [ui-design-workflow](skills/ui-design-workflow.md) | Use when a new screen, flow, or larger UI change needs a design decision: Mobbin references first, then an Excalidraw sketch so Robert can decide before any UI code. |
 | [ui-design-mobbin-reference](skills/ui-design-mobbin-reference.md) | Use when making UI/UX layout or flow decisions, before inventing a pattern. |
-| [ui-workflow](skills/ui-workflow.md) | Use when implementing a screen, flow, or frontend feature as stacked pull requests. No tests. `feat/<feature-name>/design-0` (Excalidraw), then `scaffold-0` (fake data), then `implementation-0` (real state and API). |
+| [ui-workflow](skills/ui-workflow.md) | Use when implementing a screen, flow, or frontend feature into the same `feature/.../integration` branch as the backend. No tests. `ui-design` (Excalidraw), then `ui-scaffold` (fake data), then `ui` (real state and API); `ui` may be an app name. |
 
 ### `meta` — this repo, not exported
 
