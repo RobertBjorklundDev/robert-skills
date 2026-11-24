@@ -21,9 +21,22 @@ description: Use when writing a backend or API ticket, starting that work, launc
 Git cannot hold both `feature/<segment>` and `feature/<segment>/…`, so the long-lived branch is always **`feature/<segment>/integration`**.
 
 - **Single ticket:** `feature/<ticket>/integration`. Prefer the ticket id. A descriptive slug is allowed **only** when there is no ticket id and the work is **not** under an epic.
-- **Epic:** `feature/<epic-id>/integration`. Use the epic’s **ticket id**, not a descriptive name (for example `feature/PROJ-100/integration`, not a behaviour slug). Child tickets add a path segment before the mode (for example `feature/PROJ-100/PROJ-101/tests`). Each ticket id still appears once in the branch name.
+- **Epic:** `feature/<epic-id>/integration`. Use the epic’s **ticket id**, not a descriptive name (for example `feature/PROJ-100/integration`, not a behaviour slug). Child ticket segments are **ticket-shaped** (for example `feature/PROJ-100/PROJ-101/tests`). Each ticket id still appears once in the branch name.
+- **Reserved segments:** Do not use `tests`, `test`, `impl`, `ui`, `agent`, `design`, or `scaffold` as an epic child segment or as the `<scenario>` in `tests-<scenario>`.
 
-Merge `integration` into the default branch **once**, when API, UI, agent work on that branch are complete, continuous integration (CI) is green, and the owner has reviewed it.
+Merge `integration` into the default branch **once**, when API, UI, agent work on that branch are complete, continuous integration (CI) is green, and the owner has reviewed it. Use a **merge commit** or **squash merge**; never **rebase-merge**.
+
+### Sync default branch into `integration`
+- Merge the default branch (for example `main`) **into** `feature/<id>/integration` with a normal merge commit and a normal push.
+- **Never** rebase or force-push the `integration` branch.
+- Mode branches (`tests`, `impl`, `ui`, and so on) may be rebased onto their `integration` branch when needed.
+
+### Merge conflicts (main → `integration`)
+When merging the default branch into `integration` and generated assets conflict:
+- **API client / OpenAPI:** Regenerate; do not hand-merge generated client files.
+- **Migrations:** Keep the default branch’s migration files; drop this branch’s conflicting generated migration and snapshot, then regenerate your schema change on top.
+- **Never** hand-merge Drizzle journal or snapshot files (for example `_journal.json` under `meta/`).
+- Run CI on the merged `integration` head before opening or continuing mode-branch work.
 
 Every work PR targets the matching `integration` branch, not the default branch. The **last path segment** of the source branch is the mode (no PR labels for mode).
 
@@ -101,7 +114,8 @@ Base: `feature/<epic-id>/integration`
 - No separate hotfix PR: fix forward on the current mode branch, or use `test-fix` for wrong tests.
 - Merge only when CI is green. If CI hangs, re-run it; do not merge around it.
 - Small PRs. Title plus what and why, and how it was tested.
-- Generated files (migrations, OpenAPI, clients) are regenerated after rebase, not hand-merged.
+- On `integration`: regenerate migrations, OpenAPI, and clients after syncing the default branch in (including merge conflicts), not hand-merged.
+- On mode branches: regenerate after rebasing onto `integration`, not hand-merged.
 
 ## Screens
 Design and fake-data scaffold (`ui-workflow`) may merge into `integration` before the API exists. The step that connects real state and the API waits for the contract from the test-run PR.

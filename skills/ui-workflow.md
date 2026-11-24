@@ -10,7 +10,9 @@ description: Use when implementing a screen, flow, or frontend feature, or cutti
 In a React app, a complex component is a slotted compound component (`react-architecture-slotted-components`, built on `react-architecture-slotted-component-base`). The parent owns layout and render order. A simple component takes props or `children` directly.
 
 ## Integration branch
-Use the same long-lived branch as `backend-workflow`: `feature/<ticket>/integration` for a single ticket, or `feature/<epic-id>/integration` for an epic (for example `feature/PROJ-100/integration`, with per-ticket UI branches such as `feature/PROJ-100/PROJ-101/ui-design`). Prefer ticket ids; a descriptive slug is allowed only when there is no ticket id and the work is not under an epic. Every UI PR targets `integration`, not the default branch.
+Use the same long-lived branch as `backend-workflow`: `feature/<ticket>/integration` for a single ticket, or `feature/<epic-id>/integration` for an epic (for example `feature/PROJ-100/integration`, with per-ticket UI branches such as `feature/PROJ-100/PROJ-101/ui-design`). Prefer ticket ids; a descriptive slug is allowed only when there is no ticket id and the work is not under an epic. Every UI PR targets `integration`, not the default branch. Epic child segments are ticket-shaped; reserved segment names match `backend-workflow`.
+
+Merge the default branch into `integration` the same way as `backend-workflow`: merge commit in, normal push; never rebase or force-push `integration`. Mode branches may rebase onto `integration`.
 
 Replace the prefix `ui` with an **app name** when the repo names frontends that way (for example `studio-design`, `studio-scaffold`, `studio`). The **last path segment** is still the mode for CI.
 
@@ -50,4 +52,5 @@ Phases may overlap in time with `tests` / `impl` on the same `integration` branc
 - No separate hotfix PR: fix forward on the current mode branch, or open another branch with the same mode suffix if the phase needs a follow-up.
 - Merge only when continuous integration (CI) is green. If CI hangs, re-run it; do not merge around it.
 - Small PRs. Title plus a description of what and why, and how it was checked.
-- Generated files (OpenAPI clients) are regenerated after rebase, not hand-merged.
+- On `integration`: regenerate OpenAPI clients after syncing the default branch in (including merge conflicts), not hand-merged.
+- On mode branches: regenerate after rebasing onto `integration`, not hand-merged.
