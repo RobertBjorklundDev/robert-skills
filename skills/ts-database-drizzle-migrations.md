@@ -10,6 +10,18 @@ Follow [`ts-code-style-exports`](ts-code-style-exports.md) for exports in schema
 ## Rules
 - Exports: `ts-code-style-exports` (end-of-file `export { a, b, type C }`; no default export unless a tool requires it).
 - Change the schema in TypeScript, then run `drizzle-kit generate`. Never hand-write or hand-renumber migration files.
-- On a **merge conflict** (for example default branch into `integration`, or `integration` into a mode branch): keep the incoming (base) migration files; drop your side's conflicting generated migration and snapshot; regenerate your schema change on top. Never hand-merge `_journal.json` or snapshot files.
 - One migration per PR where possible; review generated SQL before committing.
 - Destructive changes (drop/rename column) go in separate steps with a data migration plan.
+
+## Merge conflicts
+
+When a merge hits conflicts in Drizzle-generated files (for example default branch into `integration`, or `integration` into a mode branch), resolve with git — do not edit journal or snapshot files by hand.
+
+In a merge, **`git checkout --theirs` is the incoming branch** (the opposite of rebase).
+
+1. `git checkout --theirs <drizzle-out>/meta/` — take the incoming journal and snapshots.
+2. `git rm` only this branch's migration SQL files and matching snapshot files that are **not** already on the incoming side.
+3. Run the project's migration generate script (for example `npm run db:generate` or `drizzle-kit generate`).
+4. `git add` and commit the merge.
+
+Remove only migrations the incoming branch does not already have. When merging `integration` into a mode branch, do not delete or regenerate a migration that `integration` already contains.

@@ -34,9 +34,8 @@ Merge `integration` into the default branch **once**, when API, UI, agent work o
 ### Merge conflicts
 When merging and generated assets conflict (default into `integration`, or `integration` into a mode branch):
 - **API client / OpenAPI:** Regenerate; do not hand-merge generated client files.
-- **Migrations:** Keep the default branch’s migration files; drop this branch’s conflicting generated migration and snapshot, then regenerate your schema change on top.
-- **Never** hand-merge Drizzle journal or snapshot files (for example `_journal.json` under `meta/`).
-- Run CI on the merged head of the branch you updated before opening a PR or continuing work on that branch.
+- **Migrations (Drizzle ORM):** `ts-database-drizzle-migrations` (merge-conflict steps).
+- **After merging:** Run the full test suite locally. Continuous integration (CI) gates the next mode-branch PR into `integration` and the final `integration` → default-branch PR. If CI also runs on pushes to `integration`, that run must pass too.
 
 Every work PR targets the matching `integration` branch, not the default branch. The **last path segment** of the source branch is the mode (no PR labels for mode).
 
