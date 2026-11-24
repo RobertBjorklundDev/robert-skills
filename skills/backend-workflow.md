@@ -26,17 +26,17 @@ Git cannot hold both `feature/<segment>` and `feature/<segment>/…`, so the lon
 
 Merge `integration` into the default branch **once**, when API, UI, agent work on that branch are complete, continuous integration (CI) is green, and the owner has reviewed it. Use a **merge commit** or **squash merge**; never **rebase-merge**.
 
-### Sync default branch into `integration`
-- Merge the default branch (for example `main`) **into** `feature/<id>/integration` with a normal merge commit and a normal push.
-- **Never** rebase or force-push the `integration` branch.
-- Mode branches (`tests`, `impl`, `ui`, and so on) may be rebased onto their `integration` branch when needed.
+### Sync branches (merge only)
+- **Default → `integration`:** Merge the default branch (for example `main`) into `feature/<id>/integration` (merge commit, normal push).
+- **`integration` → mode branch:** Merge `integration` into the mode branch (`tests`, `impl`, `ui`, and so on) when it needs newer changes (merge commit, normal push).
+- **Never** rebase or force-push any shared branch (`integration`, mode branches, or the default branch).
 
-### Merge conflicts (main → `integration`)
-When merging the default branch into `integration` and generated assets conflict:
+### Merge conflicts
+When merging and generated assets conflict (default into `integration`, or `integration` into a mode branch):
 - **API client / OpenAPI:** Regenerate; do not hand-merge generated client files.
 - **Migrations:** Keep the default branch’s migration files; drop this branch’s conflicting generated migration and snapshot, then regenerate your schema change on top.
 - **Never** hand-merge Drizzle journal or snapshot files (for example `_journal.json` under `meta/`).
-- Run CI on the merged `integration` head before opening or continuing mode-branch work.
+- Run CI on the merged head of the branch you updated before opening a PR or continuing work on that branch.
 
 Every work PR targets the matching `integration` branch, not the default branch. The **last path segment** of the source branch is the mode (no PR labels for mode).
 
@@ -114,8 +114,7 @@ Base: `feature/<epic-id>/integration`
 - No separate hotfix PR: fix forward on the current mode branch, or use `test-fix` for wrong tests.
 - Merge only when CI is green. If CI hangs, re-run it; do not merge around it.
 - Small PRs. Title plus what and why, and how it was tested.
-- On `integration`: regenerate migrations, OpenAPI, and clients after syncing the default branch in (including merge conflicts), not hand-merged.
-- On mode branches: regenerate after rebasing onto `integration`, not hand-merged.
+- Regenerate migrations, OpenAPI, and clients after a sync merge that touches them (including merge conflicts), not hand-merged.
 
 ## Screens
 Design and fake-data scaffold (`ui-workflow`) may merge into `integration` before the API exists. The step that connects real state and the API waits for the contract from the test-run PR.
