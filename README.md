@@ -91,7 +91,7 @@ For a prototype, add `prototype-workflow`. The other skills still apply. It adds
 | [ts-code-style-return-types](skills/ts-code-style-return-types.md) | Use when writing TypeScript functions: always declare explicit return types. |
 | [ts-code-style-if-braces](skills/ts-code-style-if-braces.md) | Use when writing TypeScript conditionals: every `if`/`else` has `{}`; a short ternary is the only exception. |
 | [ts-code-style-prettier](skills/ts-code-style-prettier.md) | Use in any TypeScript project: Prettier owns formatting; run it on changed files before calling the work done. |
-| [ts-database-drizzle-migrations](skills/ts-database-drizzle-migrations.md) | Use when changing a database schema with Drizzle ORM, or resolving migration conflicts after a rebase. |
+| [ts-database-drizzle-migrations](skills/ts-database-drizzle-migrations.md) | Use when changing a database schema with Drizzle ORM, or resolving migration conflicts after a merge. |
 | [ts-ui-i18n-locales](skills/ts-ui-i18n-locales.md) | Use when adding or changing user-visible UI text, or reviewing a PR with hardcoded strings. |
 | [ts-ui-translation-keys](skills/ts-ui-translation-keys.md) | Use when creating, naming, or reviewing UI translation keys: areas joined by `_`, words by `-`, text name after `__` (`user-profile_settings_confirm-delete-modal__confirm`). |
 
